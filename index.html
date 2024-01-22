@@ -8,11 +8,45 @@
 </head>
 
 <style>
+    .gallery {
+        border: 2px solid black;
+        border-radius: 10px;
+        display: flex;
+    }
+
+    .box-container{
+        margin: 1rem;
+    }
+
+    .box-container .title{
+        margin: 1rem;
+    }
+
     .color-overlay {
         width: 400px;
         height: 400px;
         border: 2px solid black;
         border-radius: 10px;
+        margin-top: 1rem;
+        
+    }
+
+    .color-overlay2 {
+        width: 400px;
+        height: 400px;
+        border: 2px solid black;
+        border-radius: 10px;
+        margin-top: 1rem;
+     
+    }
+
+    .img-container2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-image: url("render.png");
+        background-size: contain;
+        transform: scaleX(-1);
     }
 
     .img-container {
@@ -29,7 +63,7 @@
         display: flex;
         display: flex;
         justify-content: space-between;
-        padding:0 1rem 1rem 1rem;
+        padding: 0 1rem 1rem 1rem;
     }
 
     .color-to-show {
@@ -47,10 +81,25 @@
 <body>
 
 
+    <div class="gallery">
+
+<div class="box-container">
+    <span class="title">RENDER A</span>
     <div class="color-overlay">
         <div class="img-container">
-            <div id="colorName"></div>
         </div>
+    </div>
+</div>
+
+
+<div class="box-container">
+    <span class="title">RENDER B</span>
+    <div class="color-overlay2">
+        <div class="img-container2">
+        </div>
+    </div>
+</div>
+
     </div>
     <div class="color-to-show"></div>
 
@@ -58,16 +107,15 @@
         <label for="color">Select a finish: </label>
         <input type="color" id="color" list="presetColors">
         <datalist id="presetColors">
-            <option value="#d2d9dc">Color 1 name</option>
-            <option value="#cfe4e1">Color 2 name</option>
-            <option value="#72849f">Color 3 name</option>
-            <option value="#fff7e0">Color 4 name</option>
-            <option value="#e9f3e4">Color 5 name</option>
-            <option value="#e1d8b7">Color 6 name</option>
-            <option value="#e8eae4">Color 7 name</option>
-            <option value="#e8eae4">Color 8 name</option>
-            <option value="#796b55">Color 9 name</option>
-            <option value="#2e2323">Color 10 name</option>
+            <option value="#9da1a0">S 7005-G80Y</option>
+            <option value="#d2d9dc">S 1502-B</option>
+            <option value="#e5f3fa">S 0507-B</option>
+            <option value="#fdfbe8">S 0505-G90Y </option>
+            <option value="#ebe4d2">S 1005-Y10R</option>
+            <option value="#e9f3e4">S 0510-G20Y</option>
+            <option value="#f7f3e6">S 0603-Y20R</option>
+            <option value="#22321d">S 8010-G30Y</option>
+
         </datalist>
     </div>
 
@@ -75,14 +123,15 @@
     <script>
         let color = "";
         let userColor = document.querySelector("#color");
-        let colorName = document.getElementById("colorName");
         let bgToChange = document.querySelector(".color-overlay");
+        let bgToChange2 = document.querySelector(".color-overlay2");
         let nameToDisplay = document.querySelector(".color-to-show")
 
         userColor.addEventListener("input", myFunction);
 
         function myFunction() {
             bgToChange.style.backgroundColor = userColor.value
+            bgToChange2.style.backgroundColor = userColor.value
             let selectedOption = document.querySelector("#presetColors option[value='" + userColor.value + "']");
             let colorContent = selectedOption.textContent;
             nameToDisplay.innerHTML = colorContent
